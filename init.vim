@@ -154,3 +154,8 @@ nmap tb :TagbarToggle<CR>
 
 :nnoremap <C-Z> u
 
+"Window splits and nav
+:nnoremap <Leader>f <C-w>v
+:nnoremap <Leader>s <C-w>s
+:nnoremap <tab> <C-w>w
+
