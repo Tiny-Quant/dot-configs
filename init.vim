@@ -44,12 +44,33 @@ Plug 'https://github.com/tpope/vim-fugitive'
 "Track line change from last commit
 Plug 'https://github.com/airblade/vim-gitgutter' 
 
+" Send to terminal 
+Plug 'karoliskoncevicius/vim-sendtowindow'
+
+" Easy Motion 
+Plug 'easymotion/vim-easymotion'
+
+" ncm2 LSPs and Autocompletion 
+" Requires python `pip install pynvim`
+Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp'
+
+"Python LSP
+Plug 'ncm2/ncm2-jedi'
+
+"R LSP 
+Plug 'jalvesaq/Nvim-R', {'branch': 'stable'}
+Plug 'gaalcaras/ncm-R'
+
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-path'
+
 call plug#end()
 
 "Vim keybindings for working with nerd tree
 ":nnoremap <leader>n :NERDTreeFocus<CR>
 ":nnoremap <C-n> :NERDTree<CR>
-:xnoremap <C-t> :NERDTreeToggle<CR>
+:noremap <C-t> :NERDTreeToggle<CR>
 ":nnoremap <C-f> :NERDTreeFind<CR>
 
 "Vim keybindings for working with surround
@@ -85,7 +106,38 @@ nmap tb :TagbarToggle<CR>
 :colorscheme wombat256mod
 
 " Set git gutter delay
-" :set updatetime = 1000
+:set updatetime=1000
+
+" Send to terminal keybinds
+let g:sendtowindow_use_defaults=0
+
+nmap <space>s <Plug>SendDown
+xmap <space>s <Plug>SendDownV
+nmap <space>f <Plug>SendRight
+xmap <space>f <Plug>SendRightV
+
+" Easy Motion 
+:map <Leader><Leader> <Plug>(easymotion-prefix)
+
+" ncm general keybinds
+" CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.
+:inoremap <c-c> <ESC>
+
+" When the <Enter> key is pressed while the popup menu is visible, it only
+" hides the menu. Use this mapping to close the menu and also start a new
+" line.
+:inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+
+" Use <TAB> to select the popup menu:
+:inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+:inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" synchronous autocompletion
+" enable ncm2 for all buffers
+:autocmd BufEnter * call ncm2#enable_for_buffer()
+
+"help Ncm2PopupOpen for more information
+:set completeopt=noinsert,menuone,noselect
 
 "nvim movement settings and command settings
 
@@ -158,4 +210,8 @@ nmap tb :TagbarToggle<CR>
 :nnoremap <Leader>f <C-w>v
 :nnoremap <Leader>s <C-w>s
 :nnoremap <tab> <C-w>w
+
+"Terminal Stuff
+:tnoremap jk <C-\><C-N>
+
 
