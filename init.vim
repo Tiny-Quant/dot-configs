@@ -50,20 +50,11 @@ Plug 'karoliskoncevicius/vim-sendtowindow'
 " Easy Motion 
 Plug 'easymotion/vim-easymotion'
 
-" ncm2 LSPs and Autocompletion 
-" Requires python `pip install pynvim`
-Plug 'ncm2/ncm2'
-Plug 'roxma/nvim-yarp'
-
-"Python LSP
-Plug 'ncm2/ncm2-jedi'
-
-"R LSP 
+" R nice to haves 
 Plug 'jalvesaq/Nvim-R', {'branch': 'stable'}
-Plug 'gaalcaras/ncm-R'
 
-Plug 'ncm2/ncm2-bufword'
-Plug 'ncm2/ncm2-path'
+" Conquer of Completion
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
@@ -132,12 +123,11 @@ xmap <space>f <Plug>SendRightV
 :inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 :inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-" synchronous autocompletion
-" enable ncm2 for all buffers
-:autocmd BufEnter * call ncm2#enable_for_buffer()
-
-"help Ncm2PopupOpen for more information
-:set completeopt=noinsert,menuone,noselect
+" nvim-R Settings
+"let R_assign_map = <C-=>
+let R_app = 'radian'
+let R_cmd = 'R'
+let R_hl_term = 0
 
 "nvim movement settings and command settings
 
